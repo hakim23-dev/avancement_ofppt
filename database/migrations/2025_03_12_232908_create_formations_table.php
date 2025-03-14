@@ -16,6 +16,7 @@ return new class extends Migration
             $table->String('formation_type');
             $table->String('formation_niveau');
             $table->String('nombre_annee');
+            $table->enum('creneau',['CDJ','CDS']);
             $table->timestamps();
         });
     }

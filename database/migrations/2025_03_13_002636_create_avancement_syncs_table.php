@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('module_id');
             $table->foreign('module_id')->references('id')->on('modules');
             $table->unsignedBigInteger('fusion_id');
-            $table->foreign('fusion_id')->references('id')->on('fusions');
+            $table->foreign('fusion_id')->references('id')->on('fusions')->onUpdate('cascade')->onDelete('cascade');
             $table->Integer('volume_realise');
             $table->Integer('volume_restant');
             $table->enum('semestre', ['S1', 'S2']);

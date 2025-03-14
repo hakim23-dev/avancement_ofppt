@@ -11,7 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('modules', function (Blueprint $table) {
+        Schema::create('modules', function (Blueprint $table) {
+            $table->id();
             $table->String('code_module');
             $table->String('nom_module');
             $table->enum('regional',['O','N']);
@@ -21,9 +22,13 @@ return new class extends Migration
             $table->boolean('EFM_realisation');
             $table->boolean('EFM_validation');
             $table->unsignedBigInteger('formateur_pres_id');
-            $table->foreign('formateur_pres_id')->references('id')->on('formateurs');
+            $table->foreign('formateur_pres_id')->references('id')->on('formateurs')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('formateur_sync_id');
-            $table->foreign('formateur_sync_id')->references('id')->on('formateurs');
+            $table->foreign('formateur_sync_id')->references('id')->on('formateurs')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('filiere_id');
+            $table->foreign('filiere_id')->references('id')->on('filieres')->onUpdate('cascade')->onDelete('cascade');
+            $table->enum('semestre',['S1','S2']);
+            $table->timestamps();
         });
     }
 
@@ -32,8 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('modules', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('modules');
     }
 };

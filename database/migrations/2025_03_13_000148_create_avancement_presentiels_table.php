@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('avancement_presentiels', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('module_id');
-            $table->foreign('module_id')->references('id')->on('modules');
+            $table->foreign('module_id')->references('id')->on('modules')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('groupe_id');
-            $table->foreign('groupe_id')->references('id')->on('groupes');
+            $table->foreign('groupe_id')->references('id')->on('groupes')->onUpdate('cascade')->onDelete('cascade');
             $table->Integer('volume_realise');
             $table->Integer('volume_restant');
             $table->enum('semestre', ['S1', 'S2']);

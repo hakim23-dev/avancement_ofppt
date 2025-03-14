@@ -17,7 +17,9 @@ return new class extends Migration
             $table->Integer('effectif');
             $table->string('annee_formation');
             $table->unsignedBigInteger('filiere_id');
-            $table->foreign('filiere_id')->references('id')->on('filieres');
+            $table->foreign('filiere_id')->references('id')->on('filieres')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('fusion_id');
+            $table->foreign('fusion_id')->references('id')->on('fusions')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
