@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Formateur extends Model
+class Formateurs extends Model
 {
     //
 }

@@ -6,25 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('filieres', function (Blueprint $table) {
             $table->id();
-            $table->string('code_filiere');
+            $table->string('code_filiere')->unique();
             $table->string('nom_filiere');
-            $table->unsignedBigInteger('foramtion_id');
-            $table->foreign('foramtion_id')->references('id')->on('formations')->onUpdate('cascade')->onDelete('cascade');
             $table->string('secteur')->default('Digital et Intelligence Artificielle');
+            $table->unsignedBigInteger('foramtion_id');
+            $table->foreign('foramtion_id')->references('id')->on('formations');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::dropIfExists('filieres');

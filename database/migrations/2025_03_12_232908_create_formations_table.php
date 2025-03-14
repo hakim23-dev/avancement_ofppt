@@ -6,26 +6,22 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    
     public function up(): void
     {
         Schema::create('formations', function (Blueprint $table) {
             $table->id();
-            $table->String('formation_type');
-            $table->String('formation_niveau');
-            $table->String('nombre_annee');
-            $table->enum('creneau',['CDJ','CDS']);
+            $table->enum('niveau_formation', ['TS', 'FQ', 'BP']);
+            $table->enum('type_formation', ['diplômante', 'qualifiante', 'PP']);
+            $table->enum('mode_formation', ['résidentiel', 'alternatif'])->default('résidentiel'); 
+            $table->enum('creneau', ['CDJ', 'CDS']);
+            $table->integer('nombre_annees');
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('formations');
     }
+
 };

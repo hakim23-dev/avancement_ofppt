@@ -6,23 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    
     public function up(): void
     {
         Schema::create('formateurs', function (Blueprint $table) {
             $table->id();
-            $table->String('mle');
-            $table->String('nom');
-            $table->String('prenom');
+            $table->String('mle_formateur')->unique();
+            $table->String('nom_formateur');
+            $table->String('prenom_formateur');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+    
     public function down(): void
     {
         Schema::dropIfExists('formateurs');

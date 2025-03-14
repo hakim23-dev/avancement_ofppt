@@ -7,4 +7,3 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/groupes', [GroupeController::class,'show']);

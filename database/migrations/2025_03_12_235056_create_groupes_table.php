@@ -6,20 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    
     public function up(): void
     {
         Schema::create('groupes', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
-            $table->Integer('effectif');
+            $table->string('nom_groupe');
+            $table->integer('effectif_groupe');
             $table->string('annee_formation');
             $table->unsignedBigInteger('filiere_id');
-            $table->foreign('filiere_id')->references('id')->on('filieres')->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('fusion_id');
-            $table->foreign('fusion_id')->references('id')->on('fusions')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('filiere_id')->references('id')->on('filieres');
             $table->timestamps();
         });
     }

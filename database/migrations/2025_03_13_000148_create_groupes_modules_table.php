@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('avancement_syncs', function (Blueprint $table) {
+        Schema::create('groupes_modules', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('groupe_id');
             $table->unsignedBigInteger('module_id');
+            $table->decimal('MHT_presentiel_realisées', 5, 2)->default(0);
+            $table->decimal('MHT_sync_realisées', 5, 2)->default(0);
+            $table->foreign('groupe_id')->references('id')->on('groupes');
             $table->foreign('module_id')->references('id')->on('modules');
-            $table->unsignedBigInteger('fusion_id');
-            $table->foreign('fusion_id')->references('id')->on('fusions')->onUpdate('cascade')->onDelete('cascade');
-            $table->Integer('volume_realise');
-            $table->Integer('volume_restant');
-            $table->enum('semestre', ['S1', 'S2']);
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('avancement_syncs');
+        Schema::dropIfExists('groupes_modules');
     }
 };
